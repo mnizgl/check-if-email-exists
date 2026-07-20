@@ -43,7 +43,7 @@ pub async fn setup_rabbit_mq(
 	let options = ConnectionProperties::default()
 		// Use tokio executor and reactor.
 		.with_executor(tokio_executor_trait::Tokio::current())
-		.with_reactor(tokio_reactor_trait::Tokio)
+		.with_reactor(async_reactor_trait::AsyncIo)
 		.with_connection_name(backend_name.into());
 
 	let conn = Connection::connect(&config.url, options)
